@@ -41,7 +41,7 @@
     "siteUrl": false,
     "cookiesAlert": false,
     "gdpr": false,
-    "google-analytics": "<script async src=\"https://www.googletagmanager.com/gtag/js?id=UA-173947511-2\"></script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'UA-173947511-2');\n</script>",
+    "google-analytics": "<script async src=\"https://www.googletagmanager.com/gtag/js?id=UA-173947511-2\"></script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'UA-173947511-2');\n</script>\n<script data-ad-client=\"ca-pub-8203304650372588\" async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script>\n",
     "uniqCompNum": 23,
     "versionPublish": "5.0.29"
   },
