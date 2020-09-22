@@ -1,111 +1,9 @@
-/* cyrillic */
-@font-face {
-  font-family: 'Jost';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/jost/v3/92zUtBhPNqw73oHt5D4hTxM.woff2) format('woff2');
-  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Jost';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/jost/v3/92zUtBhPNqw73oHt7j4hTxM.woff2) format('woff2');
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Jost';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/jost/v3/92zUtBhPNqw73oHt4D4h.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Jost';
-  font-style: italic;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/jost/v3/92zUtBhPNqw73oHt5D4hTxM.woff2) format('woff2');
-  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Jost';
-  font-style: italic;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/jost/v3/92zUtBhPNqw73oHt7j4hTxM.woff2) format('woff2');
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Jost';
-  font-style: italic;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/jost/v3/92zUtBhPNqw73oHt4D4h.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Jost';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/jost/v3/92zatBhPNqw73oDd4iYl.woff2) format('woff2');
-  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Jost';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/jost/v3/92zatBhPNqw73ord4iYl.woff2) format('woff2');
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Jost';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/jost/v3/92zatBhPNqw73oTd4g.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Jost';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/jost/v3/92zatBhPNqw73oDd4iYl.woff2) format('woff2');
-  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Jost';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/jost/v3/92zatBhPNqw73ord4iYl.woff2) format('woff2');
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Jost';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/jost/v3/92zatBhPNqw73oTd4g.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
+@import url(https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap);
+
+
+
+
+
 body {
   font-family: Jost;
 }
@@ -840,6 +738,18 @@ a {
 .cid-sb9U68nnY0 .mbr-text,
 .cid-sb9U68nnY0 .mbr-section-btn {
   text-align: left;
+}
+.cid-sblwg3MBwz {
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  background-color: #7949cb;
+}
+.cid-sblwg3MBwz .mbr-section-title {
+  color: #ffffff;
+}
+.cid-sblwg3MBwz .mbr-text,
+.cid-sblwg3MBwz .mbr-section-btn {
+  color: #f4f4f4;
 }
 .cid-sb9QQOXIDt {
   z-index: 1000;
@@ -2106,7 +2016,7 @@ a {
 .cid-sbgPcRevIw {
   padding-top: 2rem;
   padding-bottom: 0rem;
-  background-color: #ffffff;
+  background-color: #f4f4f4;
 }
 .cid-sbgPcRevIw .row {
   flex-direction: row-reverse;
@@ -2124,9 +2034,9 @@ a {
   }
 }
 .cid-sbgYYTZXQ3 {
-  padding-top: 0rem;
+  padding-top: 1rem;
   padding-bottom: 0rem;
-  background-color: #ffffff;
+  background-color: #f4f4f4;
 }
 .cid-sbgYYTZXQ3 .row {
   flex-direction: row-reverse;
@@ -2142,6 +2052,36 @@ a {
   .cid-sbgYYTZXQ3 .text-wrapper {
     padding: 2rem;
   }
+}
+.cid-sblpNvwq0B {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  background-color: #c9edff;
+}
+@media (min-width: 1500px) {
+  .cid-sblpNvwq0B .container {
+    max-width: 1400px;
+  }
+}
+.cid-sblpNvwq0B .mbr-iconfont {
+  display: block;
+  font-size: 5rem;
+  color: #6592e6;
+  margin-bottom: 2rem;
+}
+.cid-sblpNvwq0B .card-wrapper {
+  margin-top: 3rem;
+}
+.cid-sblpNvwq0B .row {
+  justify-content: center;
+}
+.cid-sblpNvwq0B .card-title,
+.cid-sblpNvwq0B .card-box P {
+  text-align: center;
+}
+.cid-sblpNvwq0B .card-title,
+.cid-sblpNvwq0B .card-box {
+  color: #000000;
 }
 .cid-sbk7Ybf6ke {
   padding-top: 3rem;
@@ -3925,7 +3865,7 @@ a {
 .cid-sbkwde7Ay3 {
   padding-top: 2rem;
   padding-bottom: 0rem;
-  background-color: #ffffff;
+  background-color: #f4f4f4;
 }
 .cid-sbkwde7Ay3 .row {
   flex-direction: row-reverse;
@@ -3943,9 +3883,9 @@ a {
   }
 }
 .cid-sbkwdfFclA {
-  padding-top: 0rem;
+  padding-top: 1rem;
   padding-bottom: 0rem;
-  background-color: #ffffff;
+  background-color: #c9edff;
 }
 .cid-sbkwdfFclA .row {
   flex-direction: row-reverse;
@@ -3963,9 +3903,9 @@ a {
   }
 }
 .cid-sbkwOLLwMT {
-  padding-top: 0rem;
+  padding-top: 1rem;
   padding-bottom: 0rem;
-  background-color: #ffffff;
+  background-color: #f4f4f4;
 }
 .cid-sbkwOLLwMT .row {
   flex-direction: row-reverse;
@@ -3983,9 +3923,9 @@ a {
   }
 }
 .cid-sbkx8uw9pz {
-  padding-top: 0rem;
+  padding-top: 1rem;
   padding-bottom: 0rem;
-  background-color: #ffffff;
+  background-color: #c9edff;
 }
 .cid-sbkx8uw9pz .row {
   flex-direction: row-reverse;
@@ -4003,9 +3943,9 @@ a {
   }
 }
 .cid-sbkxqBLAsk {
-  padding-top: 0rem;
+  padding-top: 1rem;
   padding-bottom: 0rem;
-  background-color: #ffffff;
+  background-color: #f4f4f4;
 }
 .cid-sbkxqBLAsk .row {
   flex-direction: row-reverse;
@@ -4023,9 +3963,9 @@ a {
   }
 }
 .cid-sbkxE59EDG {
-  padding-top: 0rem;
+  padding-top: 1rem;
   padding-bottom: 0rem;
-  background-color: #ffffff;
+  background-color: #c9edff;
 }
 .cid-sbkxE59EDG .row {
   flex-direction: row-reverse;
@@ -4043,9 +3983,9 @@ a {
   }
 }
 .cid-sbkxK7g16p {
-  padding-top: 0rem;
+  padding-top: 1rem;
   padding-bottom: 0rem;
-  background-color: #ffffff;
+  background-color: #f4f4f4;
 }
 .cid-sbkxK7g16p .row {
   flex-direction: row-reverse;
@@ -4063,9 +4003,9 @@ a {
   }
 }
 .cid-sbkxWMvpjQ {
-  padding-top: 0rem;
+  padding-top: 1rem;
   padding-bottom: 0rem;
-  background-color: #ffffff;
+  background-color: #c9edff;
 }
 .cid-sbkxWMvpjQ .row {
   flex-direction: row-reverse;
@@ -4083,9 +4023,9 @@ a {
   }
 }
 .cid-sbky6WEJUA {
-  padding-top: 0rem;
+  padding-top: 1rem;
   padding-bottom: 0rem;
-  background-color: #ffffff;
+  background-color: #f4f4f4;
 }
 .cid-sbky6WEJUA .row {
   flex-direction: row-reverse;
@@ -4103,9 +4043,9 @@ a {
   }
 }
 .cid-sbkyguZIsf {
-  padding-top: 0rem;
+  padding-top: 1rem;
   padding-bottom: 0rem;
-  background-color: #ffffff;
+  background-color: #c9edff;
 }
 .cid-sbkyguZIsf .row {
   flex-direction: row-reverse;
@@ -4123,9 +4063,9 @@ a {
   }
 }
 .cid-sbkyrYMCTU {
-  padding-top: 0rem;
+  padding-top: 1rem;
   padding-bottom: 0rem;
-  background-color: #ffffff;
+  background-color: #f4f4f4;
 }
 .cid-sbkyrYMCTU .row {
   flex-direction: row-reverse;
@@ -4143,9 +4083,9 @@ a {
   }
 }
 .cid-sbkMYhvfO1 {
-  padding-top: 0rem;
+  padding-top: 1rem;
   padding-bottom: 0rem;
-  background-color: #ffffff;
+  background-color: #c9edff;
 }
 .cid-sbkMYhvfO1 .row {
   flex-direction: row-reverse;
