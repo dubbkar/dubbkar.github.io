@@ -1,7 +1,7 @@
 {
   "settings": {
     "name": "mvs",
-    "currentPage": "wwy_2.html",
+    "currentPage": "wwy.html",
     "theme": {
       "name": "mobirise5",
       "title": "Mobirise 5",
@@ -58,7 +58,8 @@
         "meta_descr": "Weathering With You Hindi Dubbed | dubbKar",
         "header_custom": "",
         "footer_custom": "",
-        "html_before": ""
+        "html_before": "",
+        "meta_image": "@PROJECT_PATH@/assets/images/l-p0121790689.jpg"
       },
       "components": [
         {
