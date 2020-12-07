@@ -688,6 +688,17 @@ body {
 a {
   transition: color 0.6s;
 }
+.cid-sisshr5KnD {
+  padding-top: 5rem;
+  padding-bottom: 1rem;
+  background-image: url("../../../assets/images/imgonline-com-ua-compresstosize-dpwpfv5jedy5qp-500x281.jpg");
+}
+.cid-sisshr5KnD .mbr-section-title {
+  color: #ffffff;
+}
+.cid-sisshr5KnD .mbr-section-subtitle {
+  color: #bbbbbb;
+}
 .cid-sbOaEudlH4 {
   padding-top: 4rem;
   padding-bottom: 1rem;
@@ -3903,14 +3914,17 @@ a {
   }
 }
 .cid-siqd92gwWY {
-  padding-top: 8rem;
+  padding-top: 1rem;
   padding-bottom: 0rem;
-  background-image: url("../../../assets/images/eren-jaeger-mikasa-ackerman-armin-arlert-attack-on-titan-wallpaper-preview-728x521.jpeg");
+  background-image: url("../../../assets/images/imgonline-com-ua-compresstosize-dpwpfv5jedy5qp-500x281.jpg");
+}
+.cid-siqd92gwWY .mbr-section-title {
+  color: #ffffff;
 }
 .cid-siqcRUjCyF {
   padding-top: 6rem;
   padding-bottom: 4rem;
-  background-color: #fafafa;
+  background-color: #040302;
 }
 .cid-siqcRUjCyF .video-wrapper iframe {
   width: 100%;
@@ -3922,9 +3936,16 @@ a {
 }
 .cid-siqcRUjCyF .mbr-section-title {
   text-align: left;
+  color: #ffffff;
 }
 .cid-siqcRUjCyF .mbr-section-subtitle {
   text-align: left;
+  color: #bbbbbb;
+}
+.cid-sisKPFBEJ5 {
+  padding-top: 0rem;
+  padding-bottom: 2rem;
+  background-color: #040302;
 }
 .cid-sbBEdk2d1A {
   padding-top: 3rem;
