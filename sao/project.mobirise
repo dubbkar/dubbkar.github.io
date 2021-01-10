@@ -50,7 +50,8 @@
     "siteUrl": false,
     "cookiesAlert": false,
     "gdpr": false,
-    "screenshot": "screenshot.png"
+    "screenshot": "screenshot.png",
+    "witsec-white-label": true
   },
   "pages": {
     "1.html": {

@@ -51,7 +51,8 @@
     "cookiesAlert": false,
     "gdpr": false,
     "screenshot": "screenshot.png",
-    "robotsText": "User-Agent: *\nAllow: /\n\n"
+    "robotsText": "User-Agent: *\nAllow: /\n\n",
+    "witsec-white-label": true
   },
   "pages": {
     "1.html": {

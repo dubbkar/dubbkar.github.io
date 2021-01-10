@@ -75,7 +75,8 @@
     "uniqCompNum": 110,
     "versionPublish": "5.2.0",
     "screenshot": "screenshot.png",
-    "robotsText": "User-Agent: *\nAllow: /\n\n"
+    "robotsText": "User-Agent: *\nAllow: /\n\n",
+    "witsec-white-label": true
   },
   "pages": {
     "index.html": {
