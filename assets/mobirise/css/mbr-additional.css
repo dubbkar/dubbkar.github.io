@@ -738,6 +738,10 @@ a {
 }
 .cid-sbOaEudlH4 .mbr-section-subtitle {
   color: #fff0b0;
+  text-align: center;
+}
+.cid-sbOaEudlH4 .mbr-section-subtitle DIV {
+  text-align: center;
 }
 .cid-slIPbVCOLS {
   padding-top: 2rem;
@@ -751,6 +755,7 @@ a {
 .cid-slIPbVCOLS .card-title,
 .cid-slIPbVCOLS .card-box {
   color: #ffffff;
+  text-align: left;
 }
 .cid-slIPbVCOLS .mbr-text,
 .cid-slIPbVCOLS .link-wrap {
@@ -797,7 +802,7 @@ a {
 }
 .cid-slISUwiuVE .mbr-section-title {
   color: #ffffff;
-  text-align: center;
+  text-align: left;
 }
 .cid-slISUwiuVE .mbr-text,
 .cid-slISUwiuVE .mbr-section-btn {
