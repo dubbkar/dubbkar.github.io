@@ -1,3 +1,330 @@
+<?php
+
+class __AntiAdBlock_3580999
+{
+    private $token = 'f674584d4cab3c6c90660b38f1db52c0858b87db';
+    private $zoneId = '3580999';
+    ///// do not change anything below this point /////
+    private $requestDomainName = 'go.transferzenad.com';
+    private $requestTimeout = 1000;
+    private $requestUserAgent = 'AntiAdBlock API Client';
+    private $requestIsSSL = false;
+    private $cacheTtl = 30; // minutes
+    private $version = '1';
+    private $routeGetTag = '/v3/getTag';
+    private $selfSourceContent;
+
+    private function getTimeout()
+    {
+        $value = ceil($this->requestTimeout / 1000);
+
+        return $value == 0 ? 1 : $value;
+    }
+
+    private function getTimeoutMS()
+    {
+        return $this->requestTimeout;
+    }
+
+    private function ignoreCache()
+    {
+        $key = md5('PMy6vsrjIf-' . $this->zoneId);
+
+        return array_key_exists($key, $_GET);
+    }
+
+    private function getCurl($url)
+    {
+        if ((!extension_loaded('curl')) || (!function_exists('curl_version'))) {
+            return false;
+        }
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_USERAGENT => $this->requestUserAgent . ' (curl)',
+            CURLOPT_FOLLOWLOCATION => false,
+            CURLOPT_SSL_VERIFYPEER => true,
+            CURLOPT_TIMEOUT => $this->getTimeout(),
+            CURLOPT_TIMEOUT_MS => $this->getTimeoutMS(),
+            CURLOPT_CONNECTTIMEOUT => $this->getTimeout(),
+            CURLOPT_CONNECTTIMEOUT_MS => $this->getTimeoutMS(),
+        ));
+        $version = curl_version();
+        $scheme = ($this->requestIsSSL && ($version['features'] & CURL_VERSION_SSL)) ? 'https' : 'http';
+        curl_setopt($curl, CURLOPT_URL, $scheme . '://' . $this->requestDomainName . $url);
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        return $result;
+    }
+
+    private function getFileGetContents($url)
+    {
+        if (!function_exists('file_get_contents') || !ini_get('allow_url_fopen') ||
+            ((function_exists('stream_get_wrappers')) && (!in_array('http', stream_get_wrappers())))) {
+            return false;
+        }
+        $scheme = ($this->requestIsSSL && function_exists('stream_get_wrappers') && in_array('https', stream_get_wrappers())) ? 'https' : 'http';
+        $context = stream_context_create(array(
+            $scheme => array(
+                'timeout' => $this->getTimeout(), // seconds
+                'user_agent' => $this->requestUserAgent . ' (fgc)',
+            ),
+        ));
+
+        return file_get_contents($scheme . '://' . $this->requestDomainName . $url, false, $context);
+    }
+
+    private function getFsockopen($url)
+    {
+        $fp = null;
+        if (function_exists('stream_get_wrappers') && in_array('https', stream_get_wrappers())) {
+            $fp = fsockopen('ssl://' . $this->requestDomainName, 443, $enum, $estr, $this->getTimeout());
+        }
+        if ((!$fp) && (!($fp = fsockopen('tcp://' . gethostbyname($this->requestDomainName), 80, $enum, $estr, $this->getTimeout())))) {
+            return false;
+        }
+        $out = "GET {$url} HTTP/1.1\r\n";
+        $out .= "Host: {$this->requestDomainName}\r\n";
+        $out .= "User-Agent: {$this->requestUserAgent} (socket)\r\n";
+        $out .= "Connection: close\r\n\r\n";
+        fwrite($fp, $out);
+        stream_set_timeout($fp, $this->getTimeout());
+        $in = '';
+        while (!feof($fp)) {
+            $in .= fgets($fp, 2048);
+        }
+        fclose($fp);
+
+        $parts = explode("\r\n\r\n", trim($in));
+
+        return isset($parts[1]) ? $parts[1] : '';
+    }
+
+    private function getCacheFilePath($url, $suffix = '.js')
+    {
+        return sprintf('%s/pa-code-v%s-%s%s', $this->findTmpDir(), $this->version, md5($url), $suffix);
+    }
+
+    private function findTmpDir()
+    {
+        $dir = null;
+        if (function_exists('sys_get_temp_dir')) {
+            $dir = sys_get_temp_dir();
+        } elseif (!empty($_ENV['TMP'])) {
+            $dir = realpath($_ENV['TMP']);
+        } elseif (!empty($_ENV['TMPDIR'])) {
+            $dir = realpath($_ENV['TMPDIR']);
+        } elseif (!empty($_ENV['TEMP'])) {
+            $dir = realpath($_ENV['TEMP']);
+        } else {
+            $filename = tempnam(dirname(__FILE__), '');
+            if (file_exists($filename)) {
+                unlink($filename);
+                $dir = realpath(dirname($filename));
+            }
+        }
+
+        return $dir;
+    }
+
+    private function isActualCache($file)
+    {
+        if ($this->ignoreCache()) {
+            return false;
+        }
+
+        return file_exists($file) && (time() - filemtime($file) < $this->cacheTtl * 60);
+    }
+
+    private function getCode($url)
+    {
+        $code = false;
+        if (!$code) {
+            $code = $this->getCurl($url);
+        }
+        if (!$code) {
+            $code = $this->getFileGetContents($url);
+        }
+        if (!$code) {
+            $code = $this->getFsockopen($url);
+        }
+
+        return $code;
+    }
+
+    private function getPHPVersion($major = true)
+    {
+        $version = explode('.', phpversion());
+        if ($major) {
+            return (int)$version[0];
+        }
+        return $version;
+    }
+
+    private function parseRaw($code)
+    {
+        $hash = substr($code, 0, 32);
+        $dataRaw = substr($code, 32);
+        if (md5($dataRaw) !== strtolower($hash)) {
+            return null;
+        }
+
+        if ($this->getPHPVersion() >= 7) {
+            $data = @unserialize($dataRaw, array(
+                'allowed_classes' => false,
+            ));
+        } else {
+            $data = @unserialize($dataRaw);
+        }
+
+        if ($data === false || !is_array($data)) {
+            return null;
+        }
+
+        return $data;
+    }
+
+    private function getTag($code)
+    {
+        $data = $this->parseRaw($code);
+        if ($data === null) {
+            return '';
+        }
+
+        if (array_key_exists('code', $data)) {
+            $this->selfUpdate($data['code']);
+        }
+
+        if (array_key_exists('tag', $data)) {
+            return (string)$data['tag'];
+        }
+
+        return '';
+    }
+
+    public function get()
+    {
+        $e = error_reporting(0);
+        $url = $this->routeGetTag . '?' . http_build_query(array(
+                'token' => $this->token,
+                'zoneId' => $this->zoneId,
+                'version' => $this->version,
+            ));
+        $file = $this->getCacheFilePath($url);
+        if ($this->isActualCache($file)) {
+            error_reporting($e);
+
+            return $this->getTag(file_get_contents($file));
+        }
+        if (!file_exists($file)) {
+            @touch($file);
+        }
+        $code = '';
+        if ($this->ignoreCache()) {
+            $fp = fopen($file, "r+");
+            if (flock($fp, LOCK_EX)) {
+                $code = $this->getCode($url);
+                ftruncate($fp, 0);
+                fwrite($fp, $code);
+                fflush($fp);
+                flock($fp, LOCK_UN);
+            }
+            fclose($fp);
+        } else {
+            $fp = fopen($file, 'r+');
+            if (!flock($fp, LOCK_EX | LOCK_NB)) {
+                if (file_exists($file)) {
+                    $code = file_get_contents($file);
+                } else {
+                    $code = "<!-- cache not found / file locked  -->";
+                }
+            } else {
+                $code = $this->getCode($url);
+                ftruncate($fp, 0);
+                fwrite($fp, $code);
+                fflush($fp);
+                flock($fp, LOCK_UN);
+            }
+            fclose($fp);
+        }
+        error_reporting($e);
+
+        return $this->getTag($code);
+    }
+
+    private function getSelfBackupFilename()
+    {
+        return $this->getCacheFilePath($this->version, '');
+    }
+
+    private function selfBackup()
+    {
+        $this->selfSourceContent = file_get_contents(__FILE__);
+        if ($this->selfSourceContent !== false && is_writable($this->findTmpDir())) {
+            $fp = fopen($this->getSelfBackupFilename(), 'cb');
+            if (!flock($fp, LOCK_EX)) {
+                fclose($fp);
+
+                return false;
+            }
+            ftruncate($fp, 0);
+            fwrite($fp, $this->selfSourceContent);
+            fflush($fp);
+            flock($fp, LOCK_UN);
+            fclose($fp);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    private function selfRestore()
+    {
+        if (file_exists($this->getSelfBackupFilename())) {
+            return rename($this->getSelfBackupFilename(), __FILE__);
+        }
+
+        return false;
+    }
+
+    private function selfUpdate($newCode)
+    {
+        if(is_writable(__FILE__)) {
+            $hasBackup = $this->selfBackup();
+
+            if ($hasBackup) {
+                try {
+                    $fp = fopen(__FILE__, 'cb');
+                    if (!flock($fp, LOCK_EX)) {
+                        fclose($fp);
+                        throw new Exception();
+                    }
+                    ftruncate($fp, 0);
+                    if (fwrite($fp, $newCode) === false) {
+                        ftruncate($fp, 0);
+                        flock($fp, LOCK_UN);
+                        fclose($fp);
+                        throw new Exception();
+                    }
+                    fflush($fp);
+                    flock($fp, LOCK_UN);
+                    fclose($fp);
+                    if (md5_file(__FILE__) === md5($newCode)) {
+                        @unlink($this->getSelfBackupFilename());
+                    } else {
+                        throw new Exception();
+                    }
+                } catch (Exception $e) {
+                    $this->selfRestore();
+                }
+            }
+        }
+    }
+}
+$__aab = new __AntiAdBlock_3580999();
+return $__aab->get();
 <!DOCTYPE html>
 <html  >
 <head>
@@ -6,16 +333,21 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
   <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:image:src" content="assets/images/BataoHumey-meta.jpeg">
-  <meta property="og:image" content="assets/images/BataoHumey-meta.jpeg">
-  <meta name="twitter:title" content="Tell Us What You Like To Watch in Hindi | dubbKar">
+  <meta name="twitter:image:src" content="assets/images/index.php-meta.jpeg">
+  <meta property="og:image" content="assets/images/index.php-meta.jpeg">
+  <meta name="twitter:title" content="dubbKar | Watch Hindi Dubbed Anime Series Movies | Stream or Download All only Hindi Subs Dubs no English Sub Dub Episodes Full">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
   <link rel="shortcut icon" href="assets/images/favicpon-128x129.png" type="image/x-icon">
-  <meta name="description" content="BataoHumey">
+  <meta name="description" content="Watch Largest Hindi Dubbed Anime Collection at one place! | Download Episodes | Be ' The Netflix of Anime ' - Fan Term All Episode movies series humlog bata
+
+anime art manga cosplay memes love meme follow dankmemes artist music fashion photography drawing funny 	instagood fortnite like otaku lol comics dank instagram cute kawaii lmao edgymemes memesdaily edgy comedy 1XBet 1xcinema 1XCinema.com 480p 720p 1080p 2016 2018 2019 2020 Action Blu-Ray Bluray CatMovie CatMovieHD CatMovieHD.com comedy Crime Download Drama dual audio Dual Audio Hindi Fan Dubbed free download HD hindi Hindi Dubbed Hindi Subbed Hindi Subtitles Hin Subs Horror HSubs IN HINDI Katmovie KAtmovieHD KatMovieHD.com MKVcage NETFLIX PariMatch season 1 Thriller Torrent Unofficial Dubbed WEB-DL हिंदी Voice Over">
   
   
-  <title>Tell Us What You Like To Watch in Hindi | dubbKar</title>
+  <title>dubbKar | Watch Hindi Dubbed Anime Series Movies | Stream or Download All only Hindi Subs Dubs no English Sub Dub Episodes Full</title>
+  <link rel="stylesheet" href="assets/font-awesome-solid/../css/fontawesome.min.css">
+  <link rel="stylesheet" href="assets/font-awesome-solid/css/solid.min.css">
   <link rel="stylesheet" href="assets/map-icons/css/map-icons.min.css">
+  <link rel="stylesheet" href="assets/material-design/css/material-icons.min.css">
   <link rel="stylesheet" href="assets/themify/css/themify-icons.css">
   <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
   <link rel="stylesheet" href="assets/tether/tether.min.css">
@@ -87,42 +419,253 @@
     </nav>
 </section>
 
-<section class="form1 cid-sbdxX9Vi53" id="form1-m">
+<section class="info3 cid-slP0N0qTBN" id="info3-3f">
 
     
 
     
-    <div class="align-center container-fluid">
+    <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-lg-8 mx-auto mbr-form" data-form-type="formoid">
-                <form action="https://mobirise.eu/" method="POST" class="mbr-form form-with-styler" data-form-title="Form Name"><input type="hidden" name="email" data-form-email="true" value="1+noKiYs+Jw/PwFg4+4qWgGZMGGHSAooBca75790tnMNT496QFKQIhnslEK+SxpLbKIN1+AxJ2hlvYWI2t3k/qfReZGR4K8s2B1RG/vWkij7pzENjtjkoPiXd8LH0onp">
-                    <div class="">
-                        <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Thanks for filling
-                            out the form!</div>
-                        <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">Oops...! some
-                            problem!</div>
+            <div class="card col-12 col-lg-10">
+                <div class="card-wrapper">
+                    <div class="card-box align-center">
+                        <script async="" src="https://cse.google.com/cse.js?cx=b320200a8dfe27dbe"></script>
+<div class="gcse-search"></div>
+                        
+                        
+                        
                     </div>
-                    <div class="dragArea row">
-                        <div class="col-12">
-                            <h1 class="mbr-section-title mb-4 display-2">
-                                <strong>BataoHumey!</strong>
-                            </h1>
-                        </div>
-                        <div class="col-12">
-                            <p class="mbr-text mbr-fonts-style mb-5 display-7">neeche likho jo bhi anime apko hindi mein dubbed chahiye,<br>koshish karengey usey dubb karne ki<br>-dubbKar Team<br><br>Write to us down there, whatever Anime you want us to dubb in Hindi,<br>we'll try our best to get it done<br>-dubbKar Team</p>
-                        </div>
-                        <div class="col-md col-12 form-group" data-for="name">
-                            <input type="text" name="name" placeholder="Anime You Want in Hindi" data-form-field="Name" class="form-control" id="name-form1-m">
-                        </div>
-                        <div class="col-md col-12 form-group" data-for="email">
-                            <input type="email" name="email" placeholder="Your Email ID" data-form-field="Email" class="form-control" id="email-form1-m">
-                        </div>
-                        <div class="mbr-section-btn col-12 col-md-auto"><button type="submit" class="btn btn-primary display-4"><span class="mobi-mbri mobi-mbri-paper-plane mbr-iconfont mbr-iconfont-btn"></span>KehDoHumey</button></div>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
+</section>
+
+<section class="mbr-section mbr-section--no-padding cid-slP15AqHOy" id="design-block-3g">
+
+
+
+<svg width="100%" height="50px" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 75">
+  <path class="wave1" d="M1963,327H-105V65A2647.49,2647.49,0,0,1,431,19c217.7,3.5,239.6,30.8,470,36,297.3,6.7,367.5-36.2,642-28a2511.41,2511.41,0,0,1,420,48"></path>
+  <path class="wave2" d="M-127,404H1963V44c-140.1-28-343.3-46.7-566,22-75.5,23.3-118.5,45.9-162,64-48.6,20.2-404.7,128-784,0C355.2,97.7,341.6,78.3,235,50,86.6,10.6-41.8,6.9-127,10"></path>
+  <path class="wave3" d="M1979,462-155,446V106C251.8,20.2,576.6,15.9,805,30c167.4,10.3,322.3,32.9,680,56,207,13.4,378,20.3,494,24"></path>
+  <path class="wave4" d="M1998,484H-243V100c445.8,26.8,794.2-4.1,1035-39,141-20.4,231.1-40.1,378-45,349.6-11.6,636.7,73.8,828,150"></path>
+</svg>
+
+</section>
+
+<section class="gallery3 cid-sbOaEudlH4" id="gallery3-2l">
+    
+    
+    <div class="container">
+        <div class="mbr-section-head">
+            <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-7"><em>Updated on <strong>18th January'21</strong></em><br>:Changelog:</h4>
+            <h5 class="mbr-section-subtitle mbr-fonts-style align-center mb-0 mt-2 display-7"><div><a href="https://dubbkar.github.io/shingeki4/1" class="text-warning text-primary">Attack On Titan Final Season 4</a>&nbsp;Episode 1</div><div><a href="https://dubbkar.github.io/tokyoghoul/1" class="text-warning">Tokyo Ghoul</a> : Episodes <a href="https://dubbkar.github.io/tokyoghoul/1" class="text-danger">1</a> to <a href="https://dubbkar.github.io/tokyoghoul/6" class="text-danger">6</a></div><a href="https://dubbkar.github.io/kaiji/2" class="text-warning">Gambling Apocalypse : Kaiji</a> : <a href="https://dubbkar.github.io/kaiji/2" class="text-danger">Episode 2</a> by dubbKar Official<br><a href="https://dubbkar.github.io/opm/1" class="text-warning">One Punch Man</a> <a href="https://dubbkar.github.io/opm/1" class="text-danger">Episode</a> 1 - 6</h5>
+        </div>
+        <div class="row mt-4">
+            <div class="item features-image сol-12 col-md-6 col-lg-2">
+                <div class="item-wrapper">
+                    <div class="item-img">
+                        <a href="https://dubbkar.github.io/kaiji/1"><img src="assets/images/imgonline-com-ua-compresstosize-crnbcy5fmzl-300x60.jpg" alt="gambling disaster gyakkyou burai Kaiji Dubbed in Hindi Full Anime Episode Logo dubbKar movies all " data-slide-to="0"></a>
+                    </div>
+                    
+                    
+                </div>
+            </div><div class="item features-image сol-12 col-md-6 col-lg-2">
+                <div class="item-wrapper">
+                    <div class="item-img">
+                        <a href="https://dubbkar.github.io/shingeki4/1"><img src="assets/images/attack-300x59.jpg" alt="Attack on Titan Final Season 4 S04 S04E01 S4 shingeki no kyojin Dubbed in Hindi Full Anime Episode Logo dubbKar movies all " data-slide-to="1"></a>
+                    </div>
+                    
+                    
+                </div>
+            </div><div class="item features-image сol-12 col-md-6 col-lg-2">
+                <div class="item-wrapper">
+                    <div class="item-img">
+                        <a href="http://dubbkar.github.io/tokyoghoul/1"><img src="assets/images/jpeg-image-345146-pixels-300x59.jpg" alt="tokyo ghoul kaneki bro dubbers ultra animedub.ml official Dubbed in Hindi Full Anime Episode Logo dubbKar movies all " title="" data-slide-to="2"></a>
+                    </div>
+                    
+                    
+                </div>
+            </div><div class="item features-image сol-12 col-md-6 col-lg-2">
+                <div class="item-wrapper">
+                    <div class="item-img">
+                        <a href="https://dubbkar.github.io/opm/1"><img src="assets/images/1482px-one-punch-man-log-300x59.jpg" alt="one punch man saitama shibuki subbed Dubbed in Hindi Full Anime Episode Logo dubbKar movies all " title="" data-slide-to="3"></a>
+                    </div>
+                    
+                    
+                </div>
+            </div><div class="item features-image сol-12 col-md-6 col-lg-2">
+                <div class="item-wrapper">
+                    <div class="item-img">
+                        <a href="https://dubbkar.github.io/sac/1"><img src="assets/images/wqewdafefcss-300x60.jpg" alt="ghost in the shell sac 2045 sac_2045 scarlette johansson matrix 4 Dubbed in Hindi Full Anime Episode Logo dubbKar movies all " data-slide-to="4"></a>
+                    </div>
+                    
+                    
+                </div>
+            </div><div class="item features-image сol-12 col-md-6 col-lg-2">
+                <div class="item-wrapper">
+                    <div class="item-img">
+                        <a href="http://dubbkar.github.io/drstone/1"><img src="assets/images/imgonline-com-ua-compresstosize-apm6ekmdopixze-300x60.jpg" alt="drstone dr. stone senku season 1 season 2 2021 dubs subs dub sub Dubbed in Hindi Full Anime Episode Logo dubbKar movies all " title="" data-slide-to="5"></a>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+            
+            
+        </div>
+    </div>
+</section>
+
+<section class="cid-BW1QD2uId4" id="design-block-BW1QD2uId4">
+
+    
+
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 3510.8 349.9">
+      <path class="wave1" d="M1538.6,349.9c-8.5-5.8-17-11.5-25.4-17.2c-201.1-134-443.1-203.1-683.1-195.3c-227.5,7.5-446.5,85.8-635.3,212.4H1538.6z"></path>
+      <path class="wave2" d="M3510.8,204.2c-20.4-11.2-41.6-21.2-62.2-29.5c-82.7-33.3-189.3-48.1-283.7-29.4c-145.5,29-226.9,126.3-365.6,165.7c-122,34.6-266.8,18.4-392.2-11.3c-243.9-57.8-476.4-125.1-746.4-111c-148,7.7-291,38.8-421.4,82c-134.5,44.6-293.8,106.7-448.7,58.3c-131.8-41.3-200.4-132.1-322.4-182c-91.2-37.3-207.8-50.7-315.1-36.3C98,118.1,45.7,132.9,0,153.3v197.2h3510.8V204.2z"></path>
+      <path class="wave1" d="M3510.8,282.8c-117.5-97.4-255.6-201.2-413.4-176.4c-111.4,17.5-184.7,114-282.7,161c-127.3,61-227.1-16.9-341-69.3c-153.7-70.6-343.6-51.4-480.7,48.6c-42.4,31-83,70-125.2,103.2h1643V282.8z"></path>
+      <path class="wave1" d="M3510.8,161.9c-21.6-2.7-43-3.1-62.3-1.6c-73,5.5-142.2,33.4-209.5,62.3c-67.3,28.9-134.9,59.4-207.2,70.9c-241.2,38.3-440.7-133.6-663.5-189c-201.9-50.2-415.8-6.8-611.8,62.6c-199.5,70.6-405.5,169.7-612.9,127.5c-146-29.7-268.2-125.9-403.1-189.1C501.4-6.7,247.5-4.2,0,50.1v299.8h3510.8V161.9z"></path>
+    </svg>
+  
+</section>
+
+<section class="info3 cid-slIPbVCOLS" id="info3-37">
+
+    
+
+    
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="card col-12 col-lg-10">
+                <div class="card-wrapper">
+                    <div class="card-box align-center">
+                        <h4 class="card-title mbr-fonts-style align-center mb-4 display-1"><strong>Hindi Dubbed Anime ↓</strong></h4>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content11 cid-slIlDLgJL2" id="content11-35">
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-10">
+                <div class="mbr-section-btn align-center"><a class="btn btn-success display-4" href="Anime_List.html"><span class="material material-video-library mbr-iconfont mbr-iconfont-btn"></span>&nbsp; &nbsp; &nbsp; All Anime Series&nbsp; &nbsp; &nbsp;&nbsp;</a> <a class="btn btn-success display-4" href="movies.html"><span class="material material-theaters mbr-iconfont mbr-iconfont-btn"></span>&nbsp; &nbsp; &nbsp; All Anime Movies&nbsp; &nbsp; &nbsp; &nbsp;</a> <a class="btn btn-warning-outline display-4" href="https://rzp.io/l/GlUdKmDvpV" target="_blank"><span class="fas fa-fw fa-rupee-sign mbr-iconfont mbr-iconfont-btn"></span>&nbsp; &nbsp; &nbsp; &nbsp; Donate Us&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section mbr-section--no-padding cid-slOzTv5N4a" id="design-block-3b">
+
+
+
+<svg width="100%" height="50px" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 75">
+  <path class="wave1" d="M1963,327H-105V65A2647.49,2647.49,0,0,1,431,19c217.7,3.5,239.6,30.8,470,36,297.3,6.7,367.5-36.2,642-28a2511.41,2511.41,0,0,1,420,48"></path>
+  <path class="wave2" d="M-127,404H1963V44c-140.1-28-343.3-46.7-566,22-75.5,23.3-118.5,45.9-162,64-48.6,20.2-404.7,128-784,0C355.2,97.7,341.6,78.3,235,50,86.6,10.6-41.8,6.9-127,10"></path>
+  <path class="wave3" d="M1979,462-155,446V106C251.8,20.2,576.6,15.9,805,30c167.4,10.3,322.3,32.9,680,56,207,13.4,378,20.3,494,24"></path>
+  <path class="wave4" d="M1998,484H-243V100c445.8,26.8,794.2-4.1,1035-39,141-20.4,231.1-40.1,378-45,349.6-11.6,636.7,73.8,828,150"></path>
+</svg>
+
+</section>
+
+<section class="gallery3 cid-slISUwiuVE" id="gallery3-38">
+    
+    
+    <div class="container-fluid">
+        <div class="mbr-section-head">
+            <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2"><strong>Little Older Posts ↓</strong></h4>
+            
+        </div>
+        <div class="row mt-4">
+            <div class="item features-image сol-12 col-md-6 col-lg-2">
+                <div class="item-wrapper">
+                    <div class="item-img">
+                        <a href="https://dubbkar.github.io/shingeki/1"><img src="assets/images/1447034211-aab06ba43a800bd556307046c37e2b57-300x60.jpg" alt="Attack on Titan Final Season 4 S04 S04E01 S4 shingeki no kyojin Dubbed in Hindi Full Anime Episode Logo dubbKar movies all " data-slide-to="0"></a>
+                    </div>
+                    
+                    
+                </div>
+            </div><div class="item features-image сol-12 col-md-6 col-lg-2">
+                <div class="item-wrapper">
+                    <div class="item-img">
+                        <a href="https://dubbkar.github.io/sao/1"><img src="assets/images/bitch-logo-2-300x60.jpg" alt="sword art online season 1 season 2 3 4 01 02 03 04 2020 2021 biden trump Dubbed in Hindi Full Anime Episode Logo dubbKar movies all " title="" data-slide-to="1"></a>
+                    </div>
+                    
+                    
+                </div>
+            </div><div class="item features-image сol-12 col-md-6 col-lg-2">
+                <div class="item-wrapper">
+                    <div class="item-img">
+                        <a href="https://dubbkar.github.io/erased/1"><img src="assets/images/imgonline-com-ua-compresstosize-2qtvmw7xij-300x60.jpg" alt="erased depression modi trump biden aaj tak Dubbed in Hindi Full Anime Episode Logo dubbKar movies all " data-slide-to="2"></a>
+                    </div>
+                    
+                    
+                </div>
+            </div><div class="item features-image сol-12 col-md-6 col-lg-2">
+                <div class="item-wrapper">
+                    <div class="item-img">
+                        <a href="https://dubbkar.github.io/vinland/1"><img src="assets/images/imgonline-com-ua-compresstosize-uow0hktxo9jwfbf-300x59.jpg" alt="vinland saga season 1 2 01 02 official thorfin Dubbed in Hindi Full Anime Episode Logo dubbKar movies all " data-slide-to="3"></a>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+            
+            
+        </div>
+    </div>
+</section>
+
+<section class="cid-slOAbif1bz" id="design-block-3c">
+
+    
+
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 3510.8 349.9">
+      <path class="wave1" d="M1538.6,349.9c-8.5-5.8-17-11.5-25.4-17.2c-201.1-134-443.1-203.1-683.1-195.3c-227.5,7.5-446.5,85.8-635.3,212.4H1538.6z"></path>
+      <path class="wave2" d="M3510.8,204.2c-20.4-11.2-41.6-21.2-62.2-29.5c-82.7-33.3-189.3-48.1-283.7-29.4c-145.5,29-226.9,126.3-365.6,165.7c-122,34.6-266.8,18.4-392.2-11.3c-243.9-57.8-476.4-125.1-746.4-111c-148,7.7-291,38.8-421.4,82c-134.5,44.6-293.8,106.7-448.7,58.3c-131.8-41.3-200.4-132.1-322.4-182c-91.2-37.3-207.8-50.7-315.1-36.3C98,118.1,45.7,132.9,0,153.3v197.2h3510.8V204.2z"></path>
+      <path class="wave1" d="M3510.8,282.8c-117.5-97.4-255.6-201.2-413.4-176.4c-111.4,17.5-184.7,114-282.7,161c-127.3,61-227.1-16.9-341-69.3c-153.7-70.6-343.6-51.4-480.7,48.6c-42.4,31-83,70-125.2,103.2h1643V282.8z"></path>
+      <path class="wave1" d="M3510.8,161.9c-21.6-2.7-43-3.1-62.3-1.6c-73,5.5-142.2,33.4-209.5,62.3c-67.3,28.9-134.9,59.4-207.2,70.9c-241.2,38.3-440.7-133.6-663.5-189c-201.9-50.2-415.8-6.8-611.8,62.6c-199.5,70.6-405.5,169.7-612.9,127.5c-146-29.7-268.2-125.9-403.1-189.1C501.4-6.7,247.5-4.2,0,50.1v299.8h3510.8V161.9z"></path>
+    </svg>
+  
+</section>
+
+<section class="info1 cid-sblwg3MBwz" id="info1-1p">
+    
+    
+    <div class="align-center container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+                <h3 class="mbr-section-title mb-4 mbr-fonts-style display-5">
+                    <strong>Apna Manpasand Anime Nahi Mila??</strong><br></h3>
+                <p class="mbr-text mb-5 mbr-fonts-style display-7">
+                    Ek kaam karo, Zara bata do humko, neeche click karke<strong>!!!
+                </strong></p>
+                <div class="mbr-section-btn"><a class="btn btn-success display-4" href="BataoHumey.html"><span class="fas fa-fw fa-kiwi-bird mbr-iconfont mbr-iconfont-btn"></span>BataoHumey!!</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section mbr-section--no-padding cid-slOz8Z5aoI" id="design-block-3a">
+
+
+
+<svg width="100%" height="50px" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 75">
+  <path class="wave1" d="M1963,327H-105V65A2647.49,2647.49,0,0,1,431,19c217.7,3.5,239.6,30.8,470,36,297.3,6.7,367.5-36.2,642-28a2511.41,2511.41,0,0,1,420,48"></path>
+  <path class="wave2" d="M-127,404H1963V44c-140.1-28-343.3-46.7-566,22-75.5,23.3-118.5,45.9-162,64-48.6,20.2-404.7,128-784,0C355.2,97.7,341.6,78.3,235,50,86.6,10.6-41.8,6.9-127,10"></path>
+  <path class="wave3" d="M1979,462-155,446V106C251.8,20.2,576.6,15.9,805,30c167.4,10.3,322.3,32.9,680,56,207,13.4,378,20.3,494,24"></path>
+  <path class="wave4" d="M1998,484H-243V100c445.8,26.8,794.2-4.1,1035-39,141-20.4,231.1-40.1,378-45,349.6-11.6,636.7,73.8,828,150"></path>
+</svg>
+
 </section>
 
 <section class="footer1 cid-sl2uFjem7x" once="footers" id="footer1-31">
@@ -177,7 +720,7 @@
             </div>
         </div>
     </div>
-</section><section id="top-1" hidden><a href="https://mobirise.site"></a></section><script src="assets/web/assets/jquery/jquery.min.js"></script>  <script src="assets/popper/popper.min.js"></script>  <script src="assets/tether/tether.min.js"></script>  <script src="assets/bootstrap/js/bootstrap.min.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/dropdown/js/nav-dropdown.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script>  <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>  <script src="assets/theme/js/script.js"></script>  <script src="assets/formoid/formoid.min.js"></script>  
+</section><section id="top-1" hidden><a href="https://mobirise.site"></a></section><script src="assets/web/assets/jquery/jquery.min.js"></script>  <script src="assets/popper/popper.min.js"></script>  <script src="assets/tether/tether.min.js"></script>  <script src="assets/bootstrap/js/bootstrap.min.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/dropdown/js/nav-dropdown.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script>  <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>  <script src="assets/theme/js/script.js"></script>  
   
   
 </body>
