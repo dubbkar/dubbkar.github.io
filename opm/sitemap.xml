@@ -1,38 +1,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
-		<loc>https://dubbkar.github.io/opm/1/1.html</loc>
+		<loc>https://dubbkar.github.io/opm/1.html</loc>
 	</url>
 	<url>
-		<loc>https://dubbkar.github.io/opm/1/1_2.html</loc>
+		<loc>https://dubbkar.github.io/opm/1_2.html</loc>
 	</url>
 	<url>
-		<loc>https://dubbkar.github.io/opm/1/2.html</loc>
+		<loc>https://dubbkar.github.io/opm/2.html</loc>
 	</url>
 	<url>
-		<loc>https://dubbkar.github.io/opm/1/2_2.html</loc>
+		<loc>https://dubbkar.github.io/opm/2_2.html</loc>
 	</url>
 	<url>
-		<loc>https://dubbkar.github.io/opm/1/3.html</loc>
+		<loc>https://dubbkar.github.io/opm/3.html</loc>
 	</url>
 	<url>
-		<loc>https://dubbkar.github.io/opm/1/3_2.html</loc>
+		<loc>https://dubbkar.github.io/opm/3_2.html</loc>
 	</url>
 	<url>
-		<loc>https://dubbkar.github.io/opm/1/4.html</loc>
+		<loc>https://dubbkar.github.io/opm/4.html</loc>
 	</url>
 	<url>
-		<loc>https://dubbkar.github.io/opm/1/4_2.html</loc>
+		<loc>https://dubbkar.github.io/opm/4_2.html</loc>
 	</url>
 	<url>
-		<loc>https://dubbkar.github.io/opm/1/5.html</loc>
+		<loc>https://dubbkar.github.io/opm/5.html</loc>
 	</url>
 	<url>
-		<loc>https://dubbkar.github.io/opm/1/5_2.html</loc>
+		<loc>https://dubbkar.github.io/opm/5_2.html</loc>
 	</url>
 	<url>
-		<loc>https://dubbkar.github.io/opm/1/6.html</loc>
+		<loc>https://dubbkar.github.io/opm/6.html</loc>
 	</url>
 	<url>
-		<loc>https://dubbkar.github.io/opm/1/6_2.html</loc>
+		<loc>https://dubbkar.github.io/opm/6_2.html</loc>
+	</url>
+	<url>
+		<loc>https://dubbkar.github.io/opm/index.html</loc>
 	</url>
 </urlset>
