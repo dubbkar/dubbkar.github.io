@@ -5010,6 +5010,22 @@
           "_global": true,
           "_once": "menu",
           "_params": {}
+        },
+        {
+          "alias": false,
+          "_styles": {
+            ".hidden": {
+              "display": "none"
+            }
+          },
+          "_name": "design-block",
+          "_customHTML": "<section class=\"mbr-section\">\n\n    <mbr-parameters>\n    <!-- Block parameters controls (Blue \"Gear\" panel) -->\n        <header>Disable mouse right-click</header>     \n                <input type=\"checkbox\" title=\"ON\" name=\"Activate\">\n\n    <!-- End block parameters -->\n    </mbr-parameters>\n\n<script mbr-if=\"Activate\">\nvar isNS = (navigator.appName == \"Netscape\") ? 1 : 0;\nif(navigator.appName == \"Netscape\") document.captureEvents(Event.MOUSEDOWN||Event.MOUSEUP);\nfunction mischandler(){\nreturn false;\n}\nfunction mousehandler(e){\nvar myevent = (isNS) ? e : event;\nvar eventbutton = (isNS) ? myevent.which : myevent.button;\nif((eventbutton==2)||(eventbutton==3)) return false;\n}\ndocument.oncontextmenu = mischandler;\ndocument.onmousedown = mousehandler;\ndocument.onmouseup = mousehandler;\n</script>\n\n<div mbr-class=\"{'hidden': isPublish}\" style=\"padding:1rem; background-color:#c1c1c1;\">\n   <div class=\"align-center\">\n              <br>Disable mouse right-click - This line is not published, it's only for ease of access to the blue gear<br>\n\t\t\t\t\n    </div></div>\n</section>",
+          "_cid": "xl7rbZsdrj",
+          "_anchor": "design-block-xl7rbZsdrj",
+          "_protectedParams": [],
+          "_global": false,
+          "_once": false,
+          "_params": {}
         }
       ]
     }
