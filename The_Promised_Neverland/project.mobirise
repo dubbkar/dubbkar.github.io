@@ -43,7 +43,7 @@
       }
     ],
     "uniqCompNum": 183,
-    "versionPublish": "5.2.0",
+    "versionPublish": "5.3.0",
     "google-analytics": "<script async src=\"https://www.googletagmanager.com/gtag/js?id=UA-173947511-3\"></script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'UA-173947511-3');\n</script>",
     "favicon": "@PROJECT_PATH@/assets/images/imgonline-com-ua-compresstosize-thhfhx4mtbxvthol.jpg",
     "imageResize": true,

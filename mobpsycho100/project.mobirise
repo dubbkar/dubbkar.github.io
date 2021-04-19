@@ -56,7 +56,7 @@
     "cookiesAlert": false,
     "gdpr": false,
     "uniqCompNum": 64,
-    "versionPublish": "5.2.0",
+    "versionPublish": "5.3.0",
     "screenshot": "screenshot.png",
     "robotsText": "User-Agent: *\nAllow: /\n\n",
     "witsec-white-label": true,
