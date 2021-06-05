@@ -2010,13 +2010,13 @@ a {
 }
 .cid-sbBGuBOb4v .item-wrapper {
   position: relative;
-  border-radius: 4px;
+  border-radius: 1px;
   background: #98dee8;
   height: 100%;
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: column wrap;
 }
-@media (min-width: 992px) {
+@media (min-width: 20px) {
   .cid-sbBGuBOb4v .item-wrapper .item-content {
     padding: 2rem;
   }
