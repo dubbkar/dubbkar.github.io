@@ -175,12 +175,12 @@
           "_anchor": "image1-2",
           "_isUserblock": true,
           "_cid": "sq7fKhwllT",
-          "_PHPplaceholders": [],
-          "_JSplaceholders": [],
           "_protectedParams": [],
           "_global": false,
           "_once": false,
-          "_params": {}
+          "_params": {},
+          "_PHPplaceholders": [],
+          "_JSplaceholders": []
         },
         {
           "alias": false,
