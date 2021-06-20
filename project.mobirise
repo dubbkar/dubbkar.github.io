@@ -78,8 +78,8 @@
     "robotsText": "User-Agent: *\nAllow: /\n\n",
     "witsec-white-label": true,
     "global_header_custom": "",
-    "global_footer_custom": "<script>(function(s,u,z,p){s.src=u,s.setAttribute('data-zone',z),p.appendChild(s);})(document.createElement('script'),'https://iclickcdn.com/tag.min.js',4052299,document.body||document.documentElement)</script>",
-    "mbrsiteDomain": "mprpimea6e"
+    "global_footer_custom": "",
+    "mbrsiteDomain": "egf4jkti0j"
   },
   "pages": {
     "Anime_List.html": {
@@ -4219,48 +4219,6 @@
           "_anchor": "Anime-Dubbed-Hindi",
           "_PHPplaceholders": [],
           "_JSplaceholders": [],
-          "_protectedParams": [],
-          "_global": false,
-          "_once": false,
-          "_params": {}
-        },
-        {
-          "alias": false,
-          "_styles": {
-            "& when not (@fullScreen)": {
-              "padding-top": "(@paddingTop * 1rem)",
-              "padding-bottom": "(@paddingBottom * 1rem)"
-            },
-            "& when (@bg-type = \"image\")": {
-              "background-image": "url(@bg-value)"
-            },
-            "& when (@bg-type = \"color\")": {
-              "background-color": "@bg-value"
-            },
-            "ul": {
-              "list-style": "none",
-              "margin": "0",
-              "padding-left": "2.5rem"
-            },
-            "li": {
-              "position": "relative",
-              "margin-bottom": "1rem"
-            },
-            "ul li::before": {
-              "position": "absolute",
-              "left": "-1.6rem",
-              "content": "\"\\2022\"",
-              "color": "@primaryColor",
-              "font-weight": "bold",
-              "font-size": "2rem",
-              "width": "1.6rem"
-            }
-          },
-          "_name": "content14",
-          "_sourceTheme": "mobirise5",
-          "_customHTML": "<section group=\"Content\" class=\"content14\" data-bg-video=\"{{bg.type == 'video' && bg.value.url}}\" mbr-class=\"{\n    'mbr-fullscreen': fullScreen,\n    'mbr-parallax-background': bg.parallax}\">\n    <mbr-parameters>\n        <header>Size</header>\n        <input type=\"checkbox\" title=\"Full Screen\" name=\"fullScreen\">\n        <input type=\"checkbox\" title=\"Full Width\" name=\"fullWidth\">\n        <input type=\"range\" inline title=\"Top\" name=\"paddingTop\" min=\"0\" max=\"10\" step=\"1\" value=\"5\" condition=\"fullScreen == false\">\n        <input type=\"range\" inline title=\"Bottom\" name=\"paddingBottom\" min=\"0\" max=\"10\" step=\"1\" value=\"5\" condition=\"fullScreen == false\">\n        <input type=\"range\" name=\"textWidth\" title=\"Width\" min=\"4\" max=\"12\" value=\"10\" step=\"1\">\n        <header>Show/Hide</header>\n        <input type=\"checkbox\" title=\"Title\" name=\"showTitle\" checked>\n        <header>Background</header>\n        <fieldset type=\"background\" name=\"bg\" parallax>\n            <input type=\"image\" title=\"Image\" value=\"../_images/background1.jpg\" parallax>\n            <input type=\"color\" title=\"Color\" value=\"#ffffff\" selected>\n            <input type=\"video\" title=\"Video\" value=\"https://vimeo.com/428046504\">\n        </fieldset>\n        <input type=\"checkbox\" title=\"Overlay\" name=\"overlay\" condition=\"bg.type !== 'color'\" checked>\n        <input type=\"color\" title=\"Overlay Color\" name=\"overlayColor\" value=\"#ffffff\" condition=\"overlay && bg.type !== 'color'\">\n        <input type=\"range\" inline title=\"Opacity\" name=\"overlayOpacity\" min=\"0\" max=\"1\" step=\"0.1\" value=\"0.8\" condition=\"overlay && bg.type !== 'color'\">\n    </mbr-parameters>\n    <div class=\"mbr-overlay\" mbr-if=\"overlay && bg.type !== 'color'\" opacity=\"{{overlayOpacity}}\" bg-color=\"{{overlayColor}}\"></div>\n    \n    <div mbr-class=\"{'container': !fullWidth, 'container-fluid': fullWidth}\">\n        <div class=\"row justify-content-center\">\n            <div class=\"col-md-12 col-lg-{{textWidth}}\">\n                    <h3 class=\"mbr-section-title mbr-fonts-style mb-4\" mbr-theme-style=\"display-5\" mbr-if=\"showTitle\">\n                        <b>Frequently asked questions</b>\n                    </h3>\n                <ul class=\"list mbr-fonts-style\" mbr-theme-style=\"display-7\" data-app-selector=\".list\" data-multiline mbr-article>\n                    <li><b>How to create more items in this list?</b><br></li>\n                    <li><b>Can I create sites for commerical projects?</b><br>Yes, Mobirise is free for both\n                        non-profit\n                        and commercial sites.</li>\n                    <li><b>How to install more extensions?</b><br>Open the main menu in the app and find the\n                        Extensions\n                        tab. Click on it to open the Extensions list.</li>\n                    <li><b>What is Mobirise Kit?\n                        </b><br>Mobirise Kit is a service that provides the access to all current and new\n                        themes/extensions developed by Mobirise.</li>\n                    <li><b>What is Code Editor?<br></b>This extension allows editing the code of block in the\n                        app. Also,\n                        it's possible to add code to the head and body parts of pages.</li>\n                </ul>\n            </div>\n        </div>\n    </div>\n</section>",
-          "_cid": "sASvhzFi2R",
-          "_anchor": "content14-44",
           "_protectedParams": [],
           "_global": false,
           "_once": false,

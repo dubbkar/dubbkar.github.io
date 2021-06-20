@@ -3894,29 +3894,6 @@ a {
 .cid-sztfoIc20X .headline h1 {
   font-weight: bold;
 }
-.cid-sASvhzFi2R {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-  background-color: #ffffff;
-}
-.cid-sASvhzFi2R ul {
-  list-style: none;
-  margin: 0;
-  padding-left: 2.5rem;
-}
-.cid-sASvhzFi2R li {
-  position: relative;
-  margin-bottom: 1rem;
-}
-.cid-sASvhzFi2R ul li::before {
-  position: absolute;
-  left: -1.6rem;
-  content: "\2022";
-  color: #353535;
-  font-weight: bold;
-  font-size: 2rem;
-  width: 1.6rem;
-}
 .cid-slOzTv5N4a {
   background-color: #000000;
 }
