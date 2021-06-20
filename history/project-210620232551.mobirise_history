@@ -77,9 +77,9 @@
     "screenshot": "screenshot.png",
     "robotsText": "User-Agent: *\nAllow: /\n\n",
     "witsec-white-label": true,
-    "global_header_custom": "<script data-ad-client=\"ca-pub-7686234352569587\" async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script>",
+    "global_header_custom": "",
     "global_footer_custom": "",
-    "mbrsiteDomain": "xguthghdey",
+    "mbrsiteDomain": "egf4jkti0j",
     "publishType": "local",
     "publishPath": "@PROJECT_PATH@"
   },
