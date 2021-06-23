@@ -75,11 +75,13 @@
     "uniqCompNum": 151,
     "versionPublish": "5.3.0",
     "screenshot": "screenshot.png",
-    "robotsText": "User-agent: *\nAllow: /\n\n",
+    "robotsText": "User-Agent: *\nAllow: /\n\n",
     "witsec-white-label": true,
     "global_header_custom": "<script data-ad-client=\"ca-pub-7686234352569587\" async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script>",
     "global_footer_custom": "",
-    "mbrsiteDomain": "2uuo9pbvvr"
+    "mbrsiteDomain": "xguthghdey",
+    "publishType": "local",
+    "publishPath": "@PROJECT_PATH@"
   },
   "pages": {
     "Anime_List.html": {
