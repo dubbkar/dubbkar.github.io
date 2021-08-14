@@ -1,9 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Karla:200,300,400,500,600,700,800,200i,300i,400i,500i,600i,700i,800i&display=swap);
-
-
-
-
-
 body {
   font-family: Jost;
 }
@@ -3846,9 +3840,12 @@ a {
 .cid-sbOaEudlH4 .kaju {
   color: #486f94;
 }
+.cid-sbOaEudlH4 .lulu {
+  color: #cca0e9;
+}
 .cid-BW1QD2uId4 {
   padding-top: 15px;
-  background: linear-gradient(180deg, #1a1a1a, #416d97);
+  background: linear-gradient(180deg, #1a1a1a, #9a55cc);
 }
 .cid-BW1QD2uId4 .wave1 {
   opacity: 0.35;
@@ -3903,7 +3900,7 @@ a {
   text-align: left;
 }
 .cid-sAUoFnX3Ww .lund {
-  color: #65986f;
+  color: #cca9e2;
 }
 .cid-slOzTv5N4a {
   background-color: #000000;
@@ -3980,21 +3977,21 @@ a {
   background-color: #65986f;
 }
 .cid-sx049hdpGa .wave1 {
-  fill: #416d97;
+  fill: #5b4141;
 }
 .cid-sx049hdpGa .wave2 {
-  fill: #416d97;
+  fill: #5b4141;
   opacity: 0.5;
 }
 .cid-sx049hdpGa .wave3,
 .cid-sx049hdpGa .wave4 {
-  fill: #416d97;
+  fill: #5b4141;
   opacity: 0.35;
 }
 .cid-sblwg3MBwz {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color: #416d97;
+  background-color: #5b4141;
 }
 .cid-sblwg3MBwz .mbr-section-title {
   color: #ffffff;
@@ -4004,7 +4001,7 @@ a {
   color: #fafafa;
 }
 .cid-slOz8Z5aoI {
-  background-color: #416d97;
+  background-color: #5b4141;
 }
 .cid-slOz8Z5aoI .wave1 {
   fill: #040302;
