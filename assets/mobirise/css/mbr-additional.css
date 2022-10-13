@@ -680,11 +680,11 @@ a {
 .cid-szaQayItfx {
   padding-top: 7rem;
   padding-bottom: 0rem;
-  background-color: #353535;
+  background-color: #000000;
 }
 .cid-szaQayItfx .mbr-section-subtitle {
   text-align: center;
-  color: #ffffff;
+  color: #f9d355;
 }
 .cid-szaQayItfx .mbr-text {
   text-align: right;
@@ -692,7 +692,7 @@ a {
 }
 .cid-szaUyM72uu {
   padding-top: 15px;
-  background: linear-gradient(180deg, #353535, #691414);
+  background: linear-gradient(180deg, #000000, #f9d355);
 }
 .cid-szaUyM72uu .wave1 {
   opacity: 0.35;
@@ -707,7 +707,7 @@ a {
   background-color: #000000;
 }
 .cid-szaPDaP1rx .mbr-text {
-  color: #932306;
+  color: #438029;
 }
 .cid-smn6oty9ZE {
   z-index: 1000;
@@ -1071,7 +1071,7 @@ a {
 }
 .cid-14j2IJDqTm .progress-bar {
   height: 4px;
-  background: #22a5e5;
+  background: #f9d355;
   width: 0%;
 }
 .cid-14j2IJDqTm .sticky2 {
