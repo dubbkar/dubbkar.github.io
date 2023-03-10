@@ -79,7 +79,9 @@
     "witsec-white-label": true,
     "global_header_custom": "<script data-ad-client=\"ca-pub-7686234352569587\" async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script>",
     "global_footer_custom": "",
-    "mbrsiteDomain": "wttmvua5zq"
+    "mbrsiteDomain": "zbm8qrti5o",
+    "publishType": "mbrsite",
+    "mbrsite": "mbrsite://%7B%22id%22%3A257525%2C%22domain%22%3A%227xupuwyhyq.mobirisesite.com%22%7D"
   },
   "pages": {
     "Anime_List.html": {
