@@ -79,7 +79,9 @@
     "witsec-white-label": true,
     "global_header_custom": "<script data-ad-client=\"ca-pub-7686234352569587\" async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script>",
     "global_footer_custom": "",
-    "mbrsiteDomain": "wttmvua5zq"
+    "mbrsiteDomain": "wttmvua5zq",
+    "publishType": "local",
+    "publishPath": "@PROJECT_PATH@"
   },
   "pages": {
     "Anime_List.html": {
