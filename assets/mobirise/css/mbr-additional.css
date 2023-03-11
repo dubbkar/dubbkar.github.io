@@ -684,7 +684,7 @@ a {
 }
 .cid-szaQayItfx .mbr-section-subtitle {
   text-align: center;
-  color: #f9d355;
+  color: #687793;
 }
 .cid-szaQayItfx .mbr-text {
   text-align: right;
@@ -692,22 +692,53 @@ a {
 }
 .cid-szaUyM72uu {
   padding-top: 15px;
-  background: linear-gradient(180deg, #000000, #f9d355);
+  background: linear-gradient(180deg, #000000, #fac19a);
 }
 .cid-szaUyM72uu .wave1 {
   opacity: 0.35;
-  fill: #000000;
+  fill: #040302;
 }
 .cid-szaUyM72uu .wave2 {
-  fill: #000000;
+  fill: #040302;
 }
 .cid-szaPDaP1rx {
   padding-top: 5rem;
   padding-bottom: 5rem;
-  background-color: #000000;
+  background-color: #040302;
 }
 .cid-szaPDaP1rx .mbr-text {
-  color: #438029;
+  color: #b4a8a8;
+}
+.cid-szaPDaP1rx .anime-list a:hover {
+  text-decoration: none;
+  opacity: 0.7;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px #56bbe4, 0 0 70px #56bbe4, 0 0 80px #56bbe4, 0 0 100px #56bbe4;
+}
+.cid-szaPDaP1rx .anime-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  color: #d7b4a1;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+.cid-szaPDaP1rx .anime-list a {
+  display: block;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  text-decoration: none;
+  color: #fac19a;
+  font-weight: bold;
+  transition: opacity 0.2s ease-in-out;
+}
+@media (max-width: 600px) {
+  .cid-szaPDaP1rx .anime-list a {
+    width: 100%;
+  }
+}
+.cid-szaPDaP1rx .anime-list li {
+  text-indent: 15px;
 }
 .cid-smn6oty9ZE {
   z-index: 1000;
@@ -1060,30 +1091,6 @@ a {
     max-width: calc(100% + 2rem);
     left: -1rem;
   }
-}
-.cid-14j2IJDqTm .progress-container {
-  z-index: 20000;
-  position: fixed;
-  width: 100%;
-  height: 4px;
-  background: #1a1a1a;
-  top: 0px;
-}
-.cid-14j2IJDqTm .progress-bar {
-  height: 4px;
-  background: #f9d355;
-  width: 0%;
-}
-.cid-14j2IJDqTm .sticky2 {
-  position: fixed;
-  top: 59px;
-  width: 100%;
-}
-.cid-14j2IJDqTm .hidden {
-  display: none;
-}
-.cid-14j2IJDqTm H10 {
-  color: #767676;
 }
 .cid-szyozb7FFo {
   padding-top: 2rem;
@@ -3326,7 +3333,7 @@ a {
   color: #000000;
 }
 .cid-zgrxpqilr0 {
-  background: linear-gradient(45deg, #06a1ed, #e6c63b);
+  background: linear-gradient(45deg, #929caf, #fac19a);
 }
 .cid-zgrxpqilr0 H1 {
   color: #040302;
@@ -3869,6 +3876,7 @@ a {
   flex-wrap: wrap;
   justify-content: space-between;
   color: #d7b4a1;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 .cid-ty8Kf8QmkN .anime-list a {
   display: block;
@@ -3888,9 +3896,6 @@ a {
 }
 .cid-ty8Kf8QmkN .anime-list li {
   text-indent: 15px;
-}
-.cid-ty8Kf8QmkN section {
-  font-family: "Segoe UI", Arial, sans-serif;
 }
 .cid-slOzTv5N4a {
   background-color: #000000;
