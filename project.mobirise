@@ -79,7 +79,9 @@
     "witsec-white-label": true,
     "global_header_custom": "",
     "global_footer_custom": "",
-    "mbrsiteDomain": "xljpiyp9ba"
+    "mbrsiteDomain": "xljpiyp9ba",
+    "publishType": "local",
+    "publishPath": "@PROJECT_PATH@"
   },
   "pages": {
     "Anime_List.html": {

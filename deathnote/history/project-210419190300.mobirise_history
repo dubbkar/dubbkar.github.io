@@ -43,7 +43,7 @@
     "uniqCompNum": 27,
     "versionPublish": "5.2.0",
     "imageResize": true,
-    "google-analytics": "<script async src=\"https://www.googletagmanager.com/gtag/js?id=UA-173947511-3\"></script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'UA-173947511-3');\n</script>",
+    "google-analytics": "<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-85DSQ4PMSG\"></script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'G-85DSQ4PMSG');\n</script>",
     "favicon": "@PROJECT_PATH@/assets/images/imgonline-com-ua-compresstosize-thhfhx4mtbxvthol-128x128.png",
     "robotsSwitcher": true,
     "sitemapSwitcher": true,

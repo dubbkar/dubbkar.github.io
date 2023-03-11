@@ -46,7 +46,7 @@
         "url": "https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i"
       }
     ],
-    "google-analytics": "<script async src=\"https://www.googletagmanager.com/gtag/js?id=UA-173947511-3\"></script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'UA-173947511-3');\n</script>",
+    "google-analytics": "<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-85DSQ4PMSG\"></script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'G-85DSQ4PMSG');\n</script>",
     "favicon": "@PROJECT_PATH@/assets/images/saythis-90x89.png",
     "imageResize": true,
     "robotsSwitcher": true,
