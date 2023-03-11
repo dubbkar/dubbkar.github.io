@@ -1,7 +1,7 @@
 {
   "settings": {
     "name": "dubbKar | Home",
-    "currentPage": "index.html",
+    "currentPage": "broly.html",
     "theme": {
       "name": "mobirise5",
       "title": "Mobirise 5",
@@ -71,15 +71,17 @@
     "siteUrl": "http://dubbkar.in",
     "cookiesAlert": false,
     "gdpr": false,
-    "google-analytics": "<!-- Google tag (gtag.js) -->\n<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-85DSQ4PMSG\"></script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'G-85DSQ4PMSG');\n</script>",
+    "google-analytics": "<!-- Global site tag (gtag.js) - Google Analytics -->\n<script async src=\"https://www.googletagmanager.com/gtag/js?id=UA-173947511-3\"></script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'UA-173947511-3');\n</script>\n",
     "uniqCompNum": 152,
     "versionPublish": "5.6.13",
     "screenshot": "screenshot.png",
     "robotsText": "User-agent: *\nAllow: /\n\n",
     "witsec-white-label": true,
-    "global_header_custom": "",
+    "global_header_custom": "<script data-ad-client=\"ca-pub-7686234352569587\" async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script>",
     "global_footer_custom": "",
-    "mbrsiteDomain": "xljpiyp9ba"
+    "mbrsiteDomain": "wttmvua5zq",
+    "publishType": "local",
+    "publishPath": "@PROJECT_PATH@"
   },
   "pages": {
     "Anime_List.html": {
