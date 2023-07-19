@@ -3824,7 +3824,7 @@ a {
   margin-top: auto !important;
 }
 .cid-sbOaEudlH4 .mbr-section-title {
-  color: #fac19a;
+  color: #e0e4ed;
   text-align: center;
 }
 .cid-sbOaEudlH4 .mbr-text,
@@ -3888,6 +3888,8 @@ a {
   color: #fac19a;
   font-weight: bold;
   transition: opacity 0.2s ease-in-out;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 @media (max-width: 600px) {
   .cid-ty8Kf8QmkN .anime-list a {
