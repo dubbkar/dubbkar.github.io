@@ -3888,8 +3888,6 @@ a {
   color: #fac19a;
   font-weight: bold;
   transition: opacity 0.2s ease-in-out;
-  margin-left: 10px;
-  margin-right: 10px;
 }
 @media (max-width: 600px) {
   .cid-ty8Kf8QmkN .anime-list a {
@@ -3898,6 +3896,8 @@ a {
 }
 .cid-ty8Kf8QmkN .anime-list li {
   text-indent: 15px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 .cid-slOzTv5N4a {
   background-color: #000000;

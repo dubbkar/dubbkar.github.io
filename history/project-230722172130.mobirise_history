@@ -4205,7 +4205,9 @@
               "text-decoration": "none",
               "color": "#fac19a",
               "font-weight": "bold",
-              "transition": "opacity 0.2s ease-in-out"
+              "transition": "opacity 0.2s ease-in-out",
+              "margin-left": "20px",
+              "margin-right": "20px"
             },
             "@media (max-width: 600px)": {
               ".anime-list a": {
