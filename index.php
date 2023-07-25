@@ -506,7 +506,7 @@ anime art manga cosplay memes love meme follow dankmemes artist music fashion ph
             </div><div class="item features-image сol-12 col-md-6 col-lg-2">
                 <div class="item-wrapper">
                     <div class="item-img">
-                        <a href="http://dubbkar.github.io/drstone/1"><img src="assets/images/imgonline-com-ua-compresstosize-apm6ekmdopixze-300x60.jpg" alt="drstone dr. stone senku season 1 season 2 2021 dubs subs dub sub Dubbed in Hindi Full Anime Episode Logo dubbKar movies all " title="" data-slide-to="5"></a>
+                        <a href="http://dubbkar.github.io/drstone/1"><img src="assets/images/imgonline-com-ua-compresstosize-apm6ekmdopixze-300x60.jpg" alt="drstone dr. stone senku season 1 season 2 2023 dubs subs dub sub Dubbed in Hindi Full Anime Episode Logo dubbKar movies all " title="" data-slide-to="5"></a>
                     </div>
                     
                     
@@ -596,7 +596,7 @@ anime art manga cosplay memes love meme follow dankmemes artist music fashion ph
             </div><div class="item features-image сol-12 col-md-6 col-lg-2">
                 <div class="item-wrapper">
                     <div class="item-img">
-                        <a href="https://dubbkar.github.io/sao/1"><img src="assets/images/bitch-logo-2-300x60.jpg" alt="sword art online season 1 season 2 3 4 01 02 03 04 2020 2021 biden trump Dubbed in Hindi Full Anime Episode Logo dubbKar movies all " title="" data-slide-to="1"></a>
+                        <a href="https://dubbkar.github.io/sao/1"><img src="assets/images/bitch-logo-2-300x60.jpg" alt="sword art online season 1 season 2 3 4 01 02 03 04 2020 2023 biden trump Dubbed in Hindi Full Anime Episode Logo dubbKar movies all " title="" data-slide-to="1"></a>
                     </div>
                     
                     
@@ -715,7 +715,7 @@ anime art manga cosplay memes love meme follow dankmemes artist music fashion ph
             </div>
             <div class="col-12 mt-4">
                 <p class="mbr-text mb-0 mbr-fonts-style copyright align-center display-4"><strong>
-                    ©</strong> Copyright 2021&nbsp;<strong>dubbKar Team Studio</strong>. All Rights Reserved.
+                    ©</strong> Copyright 2023&nbsp;<strong>dubbKar Team Studio</strong>. All Rights Reserved.
                 </p>
             </div>
         </div>
