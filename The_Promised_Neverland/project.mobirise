@@ -56,8 +56,8 @@
     "robotsText": "User-Agent: *\nAllow: /\n\n",
     "witsec-white-label": true,
     "global_header_custom": "",
-    "global_footer_custom": "<script type=\"text/javascript\"> var infolinks_pid = 3402327; var infolinks_wsid = 0; </script> <script type=\"text/javascript\" src=\"//resources.infolinks.com/js/infolinks_main.js\"></script>",
-    "mbrsiteDomain": "yyvamv6upp",
+    "global_footer_custom": "",
+    "mbrsiteDomain": "4yfsbxhzpe",
     "publishType": "local",
     "publishPath": "@PROJECT_PATH@"
   },

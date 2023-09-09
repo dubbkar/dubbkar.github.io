@@ -60,9 +60,9 @@
     "screenshot": "screenshot.png",
     "robotsText": "User-Agent: *\nAllow: /\n\n",
     "witsec-white-label": true,
-    "global_footer_custom": "<script type=\"text/javascript\"> var infolinks_pid = 3402327; var infolinks_wsid = 0; </script> <script type=\"text/javascript\" src=\"//resources.infolinks.com/js/infolinks_main.js\"></script>",
+    "global_footer_custom": "",
     "global_header_custom": "",
-    "mbrsiteDomain": "qsueis7rsy",
+    "mbrsiteDomain": "jcb2kehoyn",
     "publishType": "local",
     "publishPath": "@PROJECT_PATH@"
   },
