@@ -1,7 +1,7 @@
 {
   "settings": {
     "name": "shingeki4",
-    "currentPage": "index.html",
+    "currentPage": "1.html",
     "theme": {
       "name": "mobirise5",
       "title": "Mobirise 5",
@@ -56,7 +56,7 @@
     "robotsText": "User-agent: *\nDisallow: /cgi-bin\n",
     "global_header_custom": "",
     "global_footer_custom": "",
-    "mbrsiteDomain": "6c9ielbup6",
+    "mbrsiteDomain": "5q5bx5nuzk",
     "mbrsite": "mbrsite://%7B%22id%22%3A119086%2C%22domain%22%3A%22qh8bqirg6e.mobirisesite.com%22%7D",
     "publishType": "local",
     "publishPath": "@PROJECT_PATH@"
